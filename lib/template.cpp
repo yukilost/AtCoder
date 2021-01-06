@@ -12,6 +12,10 @@ using namespace std;
 #define mp make_pair
 #define mt make_tuple
 #define pb push_back
+#define YES cout << "YES" << endl
+#define Yes cout << "Yes" << endl
+#define NO cout << "NO" << endl
+#define No cout << "No" << endl
 
 using ll  = long long;
 using pi  = pair<int, int>;
