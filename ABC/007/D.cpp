@@ -34,12 +34,40 @@ const ll  INFL = 1e18;
 template<class T> bool chmax(T &a, const T &b) { if(a < b) { a = b; return true; } return false; }
 template<class T> bool chmin(T &a, const T &b) { if(a > b) { a = b; return true; } return false; }
 
+// [1, n]の範囲に4,9が含まれる数字はいくつあるか
+ll contain(string n)
+{
+    if(n == "0") return 0;
+    ll dp[(int)n.length()+1][2][2];
+    memset(dp, 0, sizeof(dp));
+    REP(k, n[0]-'0'+1)
+    {
+        dp[1][k == n[0]-'0'][k == 4 || k == 9]++;
+    }
+    REPS(i, (int)n.length()-1)
+    {
+        REP(j, 2)
+        {
+            REP(c, 2)
+            {
+                int l = (j == 1) ? n[i]-'0'+1 : 10;
+                REP(k, l)
+                {
+                    dp[i+1][j && k == l-1][c || k == 4 || k == 9] += dp[i][j][c];
+                }
+            }
+        }
+    }
+
+    return dp[(int)n.length()][0][1] + dp[(int)n.length()][1][1];
+}
+
 int main()
 {
     cin.tie(0);
     ios::sync_with_stdio(false);
     cout << fixed << setprecision(10);
 
-    int n; cin >> n;
-    cout << n-1 << endl;
+    ll A, B; cin >> A >> B;    
+    cout << contain(to_string(B)) - contain(to_string(A-1)) << endl;
 }
