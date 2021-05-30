@@ -1,21 +1,32 @@
 #include "template.cpp"
 
-vi node;
-
-int root(int x)
+class UnionFind
 {
-    if(node[x] == x) return x;
-    return node[x] = root(node[x]);
-}
+public:
+    UnionFind(int N)
+    {
+        node = vector<int>(N);
+        for(int i = 0; i < N; i++) node[i] = i;
+    }
 
-void unite(int x, int y)
-{
-    int rx = root(x);
-    int ry = root(y);
-    node[rx] = ry;
-}
+    int root(int x)
+    {
+        if(node[x] == x) return x;
+        return node[x] = root(node[x]);
+    }
 
-bool same(int x, int y)
-{
-    return root(x) == root(y);
-}
+    void unite(int x, int y)
+    {
+        int rx = root(x);
+        int ry = root(y);
+        node[rx] = ry;
+    }
+
+    bool same(int x, int y)
+    {
+        return root(x) == root(y);
+    }
+
+private:
+    vector<int> node;
+};
