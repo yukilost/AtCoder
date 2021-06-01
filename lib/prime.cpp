@@ -6,7 +6,7 @@ bool is_prime[MAX+1]; // trueなら素数
 
 /**
  * @fn sieve
- * @brief エラトステネスの篩
+ * @brief エラトステネスの篩 O(n log log n)
  * @param[in] n ふるいにかける範囲
  * @return n以下の素数の個数
  */
