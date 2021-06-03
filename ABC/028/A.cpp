@@ -43,26 +43,8 @@ int main()
     cout << fixed << setprecision(20);
 
     int N; cin >> N;
-    vi a(N); REP(i, N) cin >> a[i];    
-    int sum = accumulate(ALL(a), 0);
-    if(sum % N != 0)
-    {
-        cout << -1 << endl;
-        return 0;
-    }
-    int s = 0;
-    int n = 0;
-    int ans = 0;
-    REP(i, N)
-    {
-        s += a[i];
-        n++;
-        if(sum/N*n != s) ans++;
-        else
-        {
-            n = 0;
-            s = 0;
-        }
-    }
-    cout << ans << endl;
+    if(N <= 59) cout << "Bad" << endl;
+    else if(N <= 89) cout << "Good" << endl;
+    else if(N <= 99) cout << "Great" << endl;
+    else cout << "Perfect" << endl;
 }

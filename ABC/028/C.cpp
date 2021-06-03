@@ -42,8 +42,18 @@ int main()
     ios::sync_with_stdio(false);
     cout << fixed << setprecision(20);
 
-    int l[3]; REP(i, 3) cin >> l[i];
-    if(l[0] == l[1]) cout << l[2] << endl;
-    else if(l[0] == l[2]) cout << l[1] << endl;
-    else cout << l[0] << endl;
+    vi n(5); REP(i, 5) cin >> n[i];
+    vi ans;
+    REP(i, 5)
+    {
+        for(int j = i+1; j < 5; j++)
+        {
+            for(int k = j+1; k < 5; k++)
+            {
+                ans.pb(n[i]+n[j]+n[k]);
+            }
+        }
+    }
+    sort(RALL(ans));
+    cout << ans[2] << endl;
 }
